@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body} from '@nestjs/common';
 import { AgentService } from './agent.service';
 import { ReqPayloadDto } from './dto/req-payload.dto';
 
@@ -17,7 +17,37 @@ export class AgentController {
   }
 
   @Get('config-json')
-  findOne(@Param('id') id: string) {
-    return this.agentService.findOne(+id);
+  genrateConfigJson() {
+    return {
+      data: {
+        date: {
+          created_at: '2025-04-17',
+          updated_at: '2025-04-17',
+        },
+        descriptions: {
+          app_name: 'DBQuery_Agent',
+          app_description:
+            'An agent that initiates database query operations using plain texts',
+          app_logo: 'https://cdn-icons-png.flaticon.com/512/7286/7286142.png',
+          app_url: 'https://dbquery-agent.onrender.com',
+          background_color: '#fff',
+        },
+        is_active: true,
+        integration_type: 'modifier',
+        integration_category: 'Task Automation',
+        key_features: ['Plain test database queries'],
+        author: 'Diligwe',
+        settings: [
+          {
+            label: 'Language',
+            type: 'text',
+            required: true,
+            default: 'English',
+          },
+        ],
+        target_url: 'https://dbquery-agent.onrender.com',
+        tick_url: 'https://dbquery-agent.onrender.com',
+      },
+    };
   }
 }
